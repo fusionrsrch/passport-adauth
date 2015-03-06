@@ -1,24 +1,19 @@
-# passport-ldapauth
+# passport-adauth
 
-[Passport](http://passportjs.org/) authentication strategy against LDAP server. This module is a Passport strategy wrapper for [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork)
+[Passport](http://passportjs.org/) authentication strategy against LDAP server. This module is a Passport strategy wrapper for [ldapauth-fork](https://github.com/vesse/node-adauth-fork)
 
 ## Install
 
 ```
-npm install passport-ldapauth
+npm install passport-adauth
 ```
-
-## Status
-
-[![Build Status](https://travis-ci.org/vesse/passport-ldapauth.png)](https://travis-ci.org/vesse/passport-ldapauth)
-[![Dependency Status](https://gemnasium.com/vesse/passport-ldapauth.png)](https://gemnasium.com/vesse/passport-ldapauth)
 
 ## Usage
 
 ### Configure strategy
 
 ```javascript
-var LdapStrategy = require('passport-ldapauth');
+var LdapStrategy = require('passport-adauth');
 
 passport.use(new LdapStrategy({
     server: {
@@ -28,7 +23,7 @@ passport.use(new LdapStrategy({
   }));
 ```
 
-* `server`: LDAP settings. These are passed directly to [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork). See its documentation for all available options.
+* `server`: LDAP settings. These are passed directly to [ldapauth-fork](https://github.com/vesse/node-adauth-fork). See its documentation for all available options.
     * `url`: e.g. `ldap://localhost:389`
     * `bindDn`: e.g. `cn='root'`
     * `bindCredentials`: Password for bindDn
@@ -67,14 +62,14 @@ In addition to [default authentication options](http://passportjs.org/guide/auth
 var express      = require('express'),
     passport     = require('passport'),
     bodyParser   = require('body-parser'),
-    LdapStrategy = require('passport-ldapauth');
+    LdapStrategy = require('passport-adauth');
 
 var OPTS = {
   server: {
     url: 'ldap://localhost:389',
     bindDn: 'cn=root',
     bindCredentials: 'secret',
-    searchBase: 'ou=passport-ldapauth',
+    searchBase: 'ou=passport-adauth',
     searchFilter: '(uid={{username}})'
   }
 };
@@ -133,7 +128,7 @@ var getLDAPConfiguration = function(req, callback) {
         url: 'ldap://localhost:389',
         bindDn: 'cn=root',
         bindCredentials: 'secret',
-        searchBase: 'ou=passport-ldapauth',
+        searchBase: 'ou=passport-adauth',
         searchFilter: '(uid={{username}})'
       }
     };
@@ -142,7 +137,7 @@ var getLDAPConfiguration = function(req, callback) {
   });
 };
 
-var LdapStrategy = require('passport-ldapauth');
+var LdapStrategy = require('passport-adauth');
 
 passport.use(new LdapStrategy(getLDAPConfiguration,
   function(user, done) {
