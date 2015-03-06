@@ -13,12 +13,12 @@ npm install passport-adauth
 ### Configure strategy
 
 ```javascript
-var LdapStrategy = require('passport-adauth');
+var ActiveDirectoryStrategy  = require('passport-adauth');
 
-passport.use(new LdapStrategy({
+passport.use(new ActiveDirectoryStrategy({
     server: {
-      url: 'ldap://localhost:389',
-      ...
+      host: ''ad.company.com',
+      principal: 'company.com'
     }
   }));
 ```
@@ -62,27 +62,24 @@ In addition to [default authentication options](http://passportjs.org/guide/auth
 var express      = require('express'),
     passport     = require('passport'),
     bodyParser   = require('body-parser'),
-    LdapStrategy = require('passport-adauth');
+    ActiveDirectoryStrategy = require('passport-adauth');
 
 var OPTS = {
   server: {
-    url: 'ldap://localhost:389',
-    bindDn: 'cn=root',
-    bindCredentials: 'secret',
-    searchBase: 'ou=passport-adauth',
-    searchFilter: '(uid={{username}})'
+    host: ''ad.company.com',
+    principal: 'company.com'
   }
 };
 
 var app = express();
 
-passport.use(new LdapStrategy(OPTS));
+passport.use(new ActiveDirectoryStrategy(OPTS));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(passport.initialize());
 
-app.post('/login', passport.authenticate('ldapauth', {session: false}), function(req, res) {
+app.post('/login', passport.authenticate('adauth', {session: false}), function(req, res) {
   res.send({status: 'ok'});
 });
 
