@@ -1,6 +1,6 @@
 # passport-adauth
 
-[Passport](http://passportjs.org/) authentication strategy against LDAP server. This module is a Passport strategy wrapper for [ldapauth-fork](https://github.com/vesse/node-adauth-fork)
+[Passport](http://passportjs.org/) authentication strategy against an Active Directory server. This module is a Passport strategy wrapper for [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork)
 
 ## Install
 
@@ -23,7 +23,7 @@ passport.use(new ActiveDirectoryStrategy({
   }));
 ```
 
-* `server`: LDAP settings. These are passed directly to [ldapauth-fork](https://github.com/vesse/node-adauth-fork). See its documentation for all available options.
+* `server`: LDAP settings. These are passed directly to [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork). See its documentation for all available options.
     * `url`: e.g. `ldap://localhost:389`
     * `bindDn`: e.g. `cn='root'`
     * `bindCredentials`: Password for bindDn
@@ -35,7 +35,7 @@ passport.use(new ActiveDirectoryStrategy({
 * `passwordField`: Field name where the password is found, defaults to _password_
 * `passReqToCallback`: When `true`, `req` is the first argument to the verify callback (default: `false`):
 
-        passport.use(new LdapStrategy(..., function(req, user, done) {
+        passport.use(new ActiveDirectoryStrategy(..., function(req, user, done) {
             ...
             done(null, user);
           }
@@ -45,7 +45,7 @@ Note: you can pass a function instead of an object as `options`, see the [exampl
 
 ### Authenticate requests
 
-Use `passport.authenticate()`, specifying the `'ldapauth'` strategy, to authenticate requests.
+Use `passport.authenticate()`, specifying the `'adauth'` strategy, to authenticate requests.
 
 #### `authenticate()` options
 
