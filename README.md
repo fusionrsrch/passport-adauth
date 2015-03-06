@@ -17,7 +17,7 @@ var ActiveDirectoryStrategy  = require('passport-adauth');
 
 passport.use(new ActiveDirectoryStrategy({
     server: {
-      host: ''ad.company.com',
+      host: 'ad.company.com',
       principal: 'company.com'
     }
   }));
@@ -66,7 +66,7 @@ var express      = require('express'),
 
 var OPTS = {
   server: {
-    host: ''ad.company.com',
+    host: 'ad.company.com',
     principal: 'company.com'
   }
 };
